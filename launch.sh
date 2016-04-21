@@ -100,8 +100,11 @@ if [ -n "$endAlerte" ]; then end="$endAlerte"; else end="$endAfs"; fi
 
 lineNumb=$((${end} - ${begin}))
 
-cat $cleanFile | tail -n +${begin} | head -n ${lineNumb} | grep '<a href="http://www.leboncoin.fr' | grep "title" | cut -d" " -f2 | cut -d= -f2 | sed 's/"//' | cut -d? -f1 > workingFolder/page1.urls
-cat $cleanFile | tail -n +${begin} | head -n ${lineNumb} | grep '<a href="http://www.leboncoin.fr' | grep "title" | cut -d. -f3 | cut -d/ -f3 > workingFolder/page1.ids
+#cat $cleanFile | tail -n +${begin} | head -n ${lineNumb} | grep '<a href="http://www.leboncoin.fr' | grep "title" | cut -d" " -f2 | cut -d= -f2 | sed 's/"//' | cut -d? -f1 > workingFolder/page1.urls
+cat $cleanFile | tail -n +${begin} | head -n ${lineNumb} | grep '<a href="' | grep "title" | cut -d"?" -f1 | cut -d"/" -f3,4,5 > workingFolder/page1.urls
+#cat $cleanFile | tail -n +${begin} | head -n ${lineNumb} | grep '<a href="http://www.leboncoin.fr' | grep "title" | cut -d. -f3 | cut -d/ -f3 > workingFolder/page1.ids
+cat $cleanFile | tail -n +${begin} | head -n ${lineNumb} | grep '<a href="' | grep "title" | cut -d"?" -f1 | cut -d"/" -f5 | cut -d"." -f1 > workingFolder/page1.ids
+
 paste workingFolder/page1.ids workingFolder/page1.urls > workingFolder/page1.idsUrls
 rm -f workingFolder/page1.ids workingFolder/page1.urls $cleanFile
 newId=$(head -1 workingFolder/page1.idsUrls | cut -f1)

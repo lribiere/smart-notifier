@@ -4,10 +4,14 @@ Basic Tutorial :
 
 The project should be used like this : 
 
-1- Create a very simple bash script containing two variables : a url and an email adress
-2- Call at the end of your script the lauch.sh script which usage is : <Url> <Email address - To> [Email address - Cc]
-3- Add a new line in crontab (crontab -e) launching your script when you want it.
-4- Enjoy :-)
+1- Replace in the toy_exemple.sh script the url and specify your email adress(es). Don't Forget to specify the correct absolute path to the launch script.
 
+2- Add a new line in crontab (crontab -e) launching your script at the pace you want, here is an example :
 
+*/5 * * * * /your/path/to/toy_exemple.sh >> /your/log/folder/toy_example.logs 2>&1
+
+3- Enjoy :-)
+
+Important note : 
+Considering Leboncoin's recent website's update, I cannot ensure that the parsing of the page still works today... 
 
